@@ -22,6 +22,22 @@ class ApiTest extends TestCase {
         $this->assertEquals('FEETS', $response['content']['valueConvertedTo']);
         $this->assertEquals(3.28084, $response['content']['valueConverted']);
     }
+
+        /** 
+     * Tests for 'ConvertSpeedController' class.
+     * */
+    public function test_convert_speed_controller() {
+        $convertSpeedController = new ConvertSpeedController();
+        $response = $convertSpeedController->__invoke('10', 'MILES');
+        $this->assertEquals(200, $response['code']);
+        $this->assertEquals(16.09344, $response['content']['valueConverted']);
+        $this->assertEquals('KILOMETERS', $response['content']['valueConvertedTo']);
+        $response = $convertSpeedController->__invoke('', '');
+        $this->assertEquals(400, $response['code']);
+        $this->assertEquals('ERROR: Value () is not a number.', $response['content']['msg']);
+        $response = $convertSpeedController->__invoke('15', 'KILOMETERS');
+        $this->assertEquals('15 KILOMETERS are 9.320568 MILES.', $response['content']['msg']);
+    }
 }
 
 ?>
