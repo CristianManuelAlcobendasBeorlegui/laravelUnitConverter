@@ -38,6 +38,20 @@ class ApiTest extends TestCase {
         $response = $convertSpeedController->__invoke('15', 'KILOMETERS');
         $this->assertEquals('15 KILOMETERS are 9.320568 MILES.', $response['content']['msg']);
     }
+
+    /** 
+     * Tests for 'ConvertTemperatureController' class.
+     * */
+    public function test_convert_temperature_controller() {
+        $convertTemperatureController = new ConvertTemperatureController();
+        $response = $convertTemperatureController->__invoke('31', 'CELSIUS');
+        $this->assertEquals(87.8, $response['content']['valueConverted']);
+        $this->assertEquals('FAHRENHEIT', $response['content']['valueConvertedTo']);
+        $response = $convertTemperatureController->__invoke('10', 'fahrenheit');
+        $this->assertEquals(200, $response['code']);
+        $this->assertEquals(-12.222222222222221, $response['content']['valueConverted']);
+        $this->assertEquals('CELSIUS', $response['content']['valueConvertedTo']);
+    }
 }
 
 ?>
