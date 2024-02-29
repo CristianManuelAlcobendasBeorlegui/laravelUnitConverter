@@ -52,6 +52,24 @@ class ApiTest extends TestCase {
         $this->assertEquals(-12.222222222222221, $response['content']['valueConverted']);
         $this->assertEquals('CELSIUS', $response['content']['valueConvertedTo']);
     }
+
+    /** 
+     * Tests for 'ConvertVolumeController' class.
+     * */
+    public function test_convert_volume_controller() {
+        $convertVolumeController = new ConvertVolumeController();
+        $response = $convertVolumeController->__invoke('coca-cola', '1');
+        $this->assertEquals('ERROR: Value (coca-cola) is not a number.', $response['content']['msg']);
+        $response = $convertVolumeController->__invoke('1', 'coca-cola');
+        $this->assertEquals('ERROR: Unit (COCA-COLA) is not available. Please try with "LITRES" or "GALLONS".', $response['content']['msg']);
+        $response = $convertVolumeController->__invoke('5', 'litres');
+        $this->assertEquals('5 LITRES are 1.099846 GALLONS.', $response['content']['msg']);
+        $response = $convertVolumeController->__invoke('5', '');
+        $this->assertEquals('ERROR: Unit type is not specified.', $response['content']['msg']);
+        $response = $convertVolumeController->__invoke('10', 'gallons');
+        $this->assertEquals(45.4609, $response['content']['valueConverted']);
+        $this->assertEquals('LITRES', $response['content']['valueConvertedTo']);
+    }
 }
 
 ?>
