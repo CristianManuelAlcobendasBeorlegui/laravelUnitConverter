@@ -70,6 +70,21 @@ class ApiTest extends TestCase {
         $this->assertEquals(45.4609, $response['content']['valueConverted']);
         $this->assertEquals('LITRES', $response['content']['valueConvertedTo']);
     }
+
+    /** 
+     * Tests for 'ConvertWeightController' class
+     * */
+    public function test_convert_weight_controller() {
+        $convertWeightController = new ConvertWeightController();
+        $response = $convertWeightController->__invoke('10', 'power');
+        $this->assertEquals(400, $response['code']);
+        $this->assertEquals('ERROR: Unit (POWER) is not available. Please try with "KILOGRAMS" or "POUNDS".', $response['content']['msg']);
+        $response = $convertWeightController->__invoke('10', 'kilograms');
+        $this->assertEquals('10 KILOGRAMS are 22.04623 POUNDS.', $response['content']['msg']);
+        $response = $convertWeightController->__invoke('20', 'pounds');
+        $this->assertEquals(9.071848, $response['content']['valueConverted']);
+        $this->assertEquals('KILOGRAMS', $response['content']['valueConvertedTo']);
+    }
 }
 
 ?>
