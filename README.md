@@ -1,66 +1,168 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Unit Converter
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Descripción
+Proyecto Laravel de prueba que implementa 5 endpoints de una API que convierte unas unidades a otras.
 
-## About Laravel
+## Endpoints
+### 1. Longitud
+**_Petición HTTP:_**
+```bash
+{Schema}://{FQDN}/api/converter/length/{value}/{unit}
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Parámetros:**
+- **`value`**: Un número superior a 0.
+- **`unit`**: La unidad en la que se encuentra el valor **value**. [`METERS` o `FEETS`]
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**_Ejemplo:_**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Petición HTTP:
+```txt
+http://localhost:8000/api/converter/length/1/FEETS
+```
 
-## Learning Laravel
+Respuesta:
+```json
+{
+    "code": 200,
+    "content": {
+        "value": 1,
+        "unit": "FEETS",
+        "valueConverted": 0.3048,
+        "valueConvertedTo": "METERS",
+        "msg": "1 FEET are 0.3048 METERS."
+    }
+}
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### 2. Peso
+**_Petición HTTP:_**
+```bash
+{Schema}://{FQDN}/api/converter/weight/{value}/{unit}
+```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Parámetros:**
+- **`value`**: Un número superior a 0.
+- **`unit`**: La unidad en la que se encuentra el valor **value**. [`KILOGRAMS` o `POUNDS`]
 
-## Laravel Sponsors
+**_Ejemplo:_**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Petición HTTP:
+```txt
+http://localhost:8000/api/converter/weight/2/KILOGRAMS
+```
 
-### Premium Partners
+Respuesta:
+```json
+{
+    "code": 200,
+    "content": {
+        "value": 2,
+        "unit": "KILOGRAMS",
+        "valueConverted": 4.409246,
+        "valueConvertedTo": "POUNDS",
+        "msg": "2 KILOGRAMS are 4.409246 POUNDS."
+    }
+}
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+### 3. Temperatura
+**_Petición HTTP:_**
+```bash
+{Schema}://{FQDN}/api/converter/temperature/{value}/{unit}
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Parámetros:**
+- **`value`**: Un número superior a 0.
+- **`unit`**: La unidad en la que se encuentra el valor **value**. [`CELSIUS` o `FAHRENHEIT`]
 
-## Code of Conduct
+**_Ejemplo:_**
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Petición HTTP:
+```txt
+http://localhost:8000/api/converter/temperature/15/FAHRENHEIT
+```
 
-## Security Vulnerabilities
+Respuesta:
+```json
+{
+    "code": 200,
+    "content": {
+        "value": 15,
+        "unit": "FAHRENHEIT",
+        "valueConverted": -9.444444444444445,
+        "valueConvertedTo": "CELSIUS",
+        "msg": "15 FAHRENHEIT degrees are -9.4444444444444 CELSIUS degrees."
+    }
+}
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+### 4. Volumen
+**_Petición HTTP:_**
+```bash
+{Schema}://{FQDN}/api/converter/volume/{value}/{unit}
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Parámetros:**
+- **`value`**: Un número superior a 0.
+- **`unit`**: La unidad en la que se encuentra el valor **value**. [`LITRES` o `GALLONS`]
+
+**_Ejemplo:_**
+
+Petición HTTP:
+```txt
+http://localhost:8000/api/converter/volume/3/LITRES
+```
+
+Respuesta:
+```json
+{
+    "code": 200,
+    "content": {
+        "value": 3,
+        "unit": "LITRES",
+        "valueConverted": 0.6599076,
+        "valueConvertdTo": "GALLONS",
+        "msg": "3 LITRES are 0.6599076 GALLONS."
+    }
+}
+```
+
+---
+
+### 5. Velocidad
+**_Petición HTTP:_**
+```bash
+{Schema}://{FQDN}/api/converter/speed/{value}/{unit}
+```
+
+**Parámetros:**
+- **`value`**: Un número superior a 0.
+- **`unit`**: La unidad en la que se encuentra el valor **value**. [`KILOMETERS` o `MILES`]
+
+**_Ejemplo:_**
+
+Petición HTTP:
+```txt
+http://localhost:8000/api/converter/speed/2/MILES
+```
+
+Respuesta:
+```json
+{
+    "code": 200,
+    "content": {
+        "value": 2,
+        "unit": "MILES",
+        "valueConverted": 3.218688,
+        "valueConvertedTo": "KILOMETERS",
+        "msg": "2 MILES are 3.218688 KILOMETERS."
+    }
+}
+```
