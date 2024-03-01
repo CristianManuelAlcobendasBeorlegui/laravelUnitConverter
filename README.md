@@ -3,6 +3,20 @@
 ## Descripción
 Proyecto Laravel de prueba que implementa 5 endpoints de una API que convierte unas unidades a otras.
 
+## Implementación
+### 1. Descargas el proyecto
+```
+git clone https://github.com/CristianManuelAlcobendasBeorlegui/laravelUnitConverter
+```
+
+### 2. Instalas librerias y dependencias
+```
+composer update
+composer install
+```
+
+**_¡Y con esto ya tienes lo que necesitas para hacer funcionar este proyecto!_**
+
 ## Endpoints
 ### 1. Longitud
 **_Petición HTTP:_**
